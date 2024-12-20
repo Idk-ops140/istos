@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Istos Online Compiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #output {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        textarea {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Istos Code Compiler</h1>
+        <textarea id="codeInput" placeholder="Write your Istos code here..."></textarea>
+        <button onclick="compileIstosCode()">Compile</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Function to compile and display the Istos code as HTML
+        function compileIstosCode() {
+            const istosCode = document.getElementById("codeInput").value;
+            const outputDiv = document.getElementById("output");
+
+            // Check if the Istos code is empty
+            if (!istrosCode.trim()) {
+                outputDiv.innerHTML = "<p style='color: red;'>Please write some Istos code.</p>";
+                return;
+            }
+
+            // Convert Istos code to HTML
+            let htmlOutput = convertIstosToHTML(istrosCode);
+            
+            // Display the converted HTML output
+            outputDiv.innerHTML = htmlOutput;
+        }
+
+        // Function to convert Istos code to HTML (this is just an example)
+        function convertIstosToHTML(istrosCode) {
+            // Example: Converting simple Istos tags to HTML tags
+            let htmlOutput = istosCode;
+
+            // Convert Istos tags to HTML tags (e.g., <head> becomes <head>)
+            htmlOutput = htmlOutput.replace(/\<head\>/g, "<head>");
+            htmlOutput = htmlOutput.replace(/\<\/head\>/g, "</head>");
+            htmlOutput = htmlOutput.replace(/\<body\>/g, "<body>");
+            htmlOutput = htmlOutput.replace(/\<\/body\>/g, "</body>");
+            htmlOutput = htmlOutput.replace(/\<p\>(.*?)\<\/p\>/g, "<p>$1</p>");
+
+            // You can add more tag conversion logic here based on Istos' syntax
+
+            // Return the HTML output
+            return htmlOutput;
+        }
+    </script>
+</body>
+</html>
